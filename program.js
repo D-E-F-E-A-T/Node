@@ -21,3 +21,5 @@ process.stdin.on('readable', () => {
         }
     }
 });
+
+console.log('sss')
