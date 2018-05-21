@@ -12,6 +12,9 @@ process.stdin.on('readable', () => {
             case '/lang':
                 process.stdout.write(process.env.LANG + '\n');
                 break;
+            case '/home':
+                process.stdout.write(process.env.HOME + '\n');
+                break;
             case '/exit':
                process.stdout.write('Quitting app! \n');
                process.exit();
