@@ -1,8 +1,9 @@
-process.stdin.setEncoding('utf-8');
+const os = require('os');
 
+process.stdin.setEncoding('utf-8');
 process.stdin.on('readable', () => {
     const input = process.stdin.read();
-
+    console.log(os)
     if(input !== null) {
         const instruction = input.toString().trim();
         switch(instruction) {
@@ -21,5 +22,3 @@ process.stdin.on('readable', () => {
         }
     }
 });
-
-console.log('sss')
