@@ -1,4 +1,5 @@
 const os = require('os');
+const colors = require('colors');
 
 const release = os.release() //operating system release.
 const type = os.type(); //return 'Linux' on Linux, 'Darwin' on macOS and 'Windows_NT' on Windows
@@ -7,12 +8,12 @@ const uptime = os.uptime(); //in seconds
 const userInfo = os.userInfo();
 
 const getOsInfo = () => {
-    process.stdout.write(system() + '\n');
-    process.stdout.write('Release: ' + release + '\n');
-    process.stdout.write('CPU model: ' + cpus[0].model + '\n')
-    process.stdout.write('Time up: ' + upTime() + '\n');
-    process.stdout.write('User: ' + userInfo.username + '\n');
-    process.stdout.write('Home dir: ' + userInfo.homedir + '\n');
+    process.stdout.write(colors.grey(system()) + '\n');
+    process.stdout.write(colors.red('Release: ') + release + '\n');
+    process.stdout.write(colors.magenta('CPU model: ') + cpus[0].model + '\n')
+    process.stdout.write(colors.green('Time up: ') + upTime() + '\n');
+    process.stdout.write(colors.yellow('User: ') + userInfo.username + '\n');
+    process.stdout.write(colors.cyan('Home dir: ') + userInfo.homedir + '\n');
 }
 
 const upTime = () => {

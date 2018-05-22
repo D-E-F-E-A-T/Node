@@ -1,4 +1,5 @@
 const osInfo = require('./OS');
+const colors = require('colors');
 
 process.stdin.setEncoding('utf-8');
 process.stdin.on('readable', () => {

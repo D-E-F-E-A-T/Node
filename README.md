@@ -4,4 +4,4 @@
 
 ### branch2: modules
 
-* OS module
+* OS module + npm pack colors.js
