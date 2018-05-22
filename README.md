@@ -4,4 +4,8 @@
 
 ### branch2: modules
 
-* OS module
+* OS module + npm pack colors.js
+
+### branch3: events
+
+* Event Emitter basic
