@@ -1,22 +1,33 @@
 const os = require('os');
 const colors = require('colors');
 
-const release = os.release() //operating system release.
-const type = os.type(); //return 'Linux' on Linux, 'Darwin' on macOS and 'Windows_NT' on Windows
-const cpus = os.cpus(); // [{}, {}];
-const uptime = os.uptime(); //in seconds
-const userInfo = os.userInfo();
 
-const getOsInfo = () => {
-    process.stdout.write(colors.grey(system()) + '\n');
+ const getOsInfo = () => {
+    const release = os.release() //operating system release.
+    const type = os.type(); //return 'Linux' on Linux, 'Darwin' on macOS and 'Windows_NT' on Windows
+    const cpus = os.cpus(); // [{}, {}];
+    const uptime = os.uptime(); //in seconds
+    const userInfo = os.userInfo();
+
+    process.stdout.write(colors.grey(system(type)) + '\n');
     process.stdout.write(colors.red('Release: ') + release + '\n');
     process.stdout.write(colors.magenta('CPU model: ') + cpus[0].model + '\n')
-    process.stdout.write(colors.green('Time up: ') + upTime() + '\n');
+    process.stdout.write(colors.green('Time up: ') + upTime(uptime) + '\n');
     process.stdout.write(colors.yellow('User: ') + userInfo.username + '\n');
     process.stdout.write(colors.cyan('Home dir: ') + userInfo.homedir + '\n');
 }
 
-const upTime = () => {
+const system = (type) => {
+    if(type === 'Darwin') {
+        return 'System: ' + 'macOS'
+    } else if (type === 'Windows_NT') {
+        return 'System: ' + 'Windows'
+    } else {
+        return 'System: ' + 'Linux'
+    }
+}
+
+const upTime = (uptime) => {
     let sec_num = uptime.toFixed(0);
     const hours   = Math.floor(sec_num / 3600);
     const minutes = Math.floor((sec_num - (hours * 3600)) / 60);
@@ -30,15 +41,6 @@ const upTime = () => {
     return time;
 }
 
-const system = () => {
-    if(type === 'Darwin') {
-        return 'System: ' + 'macOS'
-    } else if (type === 'Windows_NT') {
-        return 'System: ' + 'Windows'
-    } else {
-        return 'System: ' + 'Linux'
-    }
-}
 
 exports.print = getOsInfo;
 
