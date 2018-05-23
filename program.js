@@ -1,26 +1,24 @@
-process.stdin.setEncoding('utf-8');
+const fs = require('fs');
+const Mode = require('stat-mode');
+const colors = require('colors');
+/*
+fs.stat('.img/panda.jpg', (err, stats) => {
+    if (err) throw err;
+    const mode = new Mode(stats);
+    console.log(mode)
+    console.log(mode.toString());
+});
+*/
 
-process.stdin.on('readable', () => {
-    const input = process.stdin.read();
-
-    if(input !== null) {
-        const instruction = input.toString().trim();
-        switch(instruction) {
-            case '/node':
-                process.stdout.write(process.versions.node + '\n');
-                break;
-            case '/lang':
-                process.stdout.write(process.env.LANG + '\n');
-                break;
-            case '/home':
-                process.stdout.write(process.env.HOME + '\n');
-                break;
-            case '/exit':
-               process.stdout.write('Quitting app! \n');
-               process.exit();
-               break;
-            default:
-                process.stderr.write('Wrong instruction \n')
-        }
-    }
+fs.readFile('./text', 'utf8', (err, data) => {
+    if(err) throw err;
+    console.log('data before writing: '.yellow, data);
+    fs.writeFile('./text', 'some text \n', (err) => {
+        if(err) throw err;
+        console.log('save'.green)
+        fs.readFile('./text', 'utf8', (err,data) => {
+            if(err) throw err;
+            console.log('date after writing: '.yellow, data);
+        });
+    });
 });
